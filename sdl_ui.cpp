@@ -28,10 +28,10 @@ void mainloop(void* arg) {
     for (int x = 0; x < width; ++x) {
       // Draw cell fill (smaller by 1 pixel to create gap)
       SDL_Rect fill_rect;
-      fill_rect.x = x * cell_size;
-      fill_rect.y = y * cell_size;
-      fill_rect.w = cell_size - 1;
-      fill_rect.h = cell_size - 1;
+      fill_rect.x = x * cell_size + 1;
+      fill_rect.y = y * cell_size + 1;
+      fill_rect.w = cell_size - 2;
+      fill_rect.h = cell_size - 2;
       
       if (grid[y][x] == 1) {
         // Live cell: black fill
@@ -45,10 +45,10 @@ void mainloop(void* arg) {
       // Draw black border for all cells
       SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
       SDL_Rect border_rect;
-      border_rect.x = x * cell_size;
-      border_rect.y = y * cell_size;
-      border_rect.w = cell_size;
-      border_rect.h = cell_size;
+      border_rect.x = x * cell_size + 1;
+      border_rect.y = y * cell_size + 1;
+      border_rect.w = cell_size - 2;
+      border_rect.h = cell_size - 2;
       SDL_RenderDrawRect(renderer, &border_rect);
     }
   }
@@ -60,9 +60,9 @@ void mainloop(void* arg) {
 }
 
 int main() {
-  const int kGridWidth = 64;
-  const int kGridHeight = 64;
-  const int kCellSize = 8; // pixels per cell
+  const int kGridWidth = 48;
+  const int kGridHeight = 48;
+  const int kCellSize = 15; // pixels per cell
   const int kWindowWidth = kGridWidth * kCellSize;
   const int kWindowHeight = kGridHeight * kCellSize;
   
